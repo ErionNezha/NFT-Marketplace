@@ -66,7 +66,7 @@ footer strong{color:#9fb3c8}
 </div>
 <main>
 <div class="note">💡 Demo-ja live ekzekutohet direkt në browser. Kliko <strong>Kodi Burim</strong> për të parë kodin e plotë të projektit.</div>
-<div id="p-demo" class="panel active"><iframe class="demo" src="original/index.html" title="Live demo"></iframe></div>
+<div id="p-demo" class="panel active"><iframe class="demo" src="demo/index.html" title="Live demo"></iframe></div>
 <div id="p-code" class="panel"><div class="codewrap">
 <aside class="tree" id="tree"></aside>
 <div class="codeview"><div class="cbar" id="cbar"></div><div id="codebox"><pre></pre></div></div>
@@ -75,6 +75,7 @@ footer strong{color:#9fb3c8}
 <footer>Krijuar nga <strong>Erion Nezha</strong> — © 2026</footer>
 <script>
 const TREE={"dirs": [{"name": "css", "dirs": [], "files": ["animate.css", "bootstrap.min.css", "boxicons.min.css", "magnific-popup.css", "meanmenu.css", "owl.carousel.min.css", "owl.theme.default.min.css", "responsive.css", "splitting-cells.css", "splitting.css", "style.css"]}, {"name": "img", "dirs": [{"name": "author", "dirs": [], "files": ["1.png", "10.png", "12.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"]}, {"name": "client", "dirs": [], "files": ["1.jpg", "2.jpg", "3.jpg"]}, {"name": "extra", "dirs": [{"name": "blog", "dirs": [], "files": ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "blog.jpg", "comment1.jpg", "comment2.jpg"]}], "files": ["about-group.png", "about.png", "account.png", "contact.png"]}, {"name": "footer", "dirs": [], "files": ["footer-bg.svg", "payment.png"]}, {"name": "header", "dirs": [], "files": ["feature1.png", "feature2.png", "feature3.png", "feature4.png", "feature5.png", "feature6.png"]}, {"name": "main", "dirs": [], "files": ["testi-bg.png"]}, {"name": "portfolio", "dirs": [], "files": ["1.jpg", "10.jpg", "11.jpg", "12.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg"]}, {"name": "wallet", "dirs": [], "files": ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png"]}], "files": ["breadcrumb.svg", "buy-left.png", "dark-header.svg", "logo.png", "sell-right.png"]}, {"name": "js", "dirs": [], "files": ["bootstrap.min.js", "jquery-3.6.0.min.js", "jquery-accordion.js", "jquery.appear.min.js", "jquery.magnific-popup.min.js", "jquery.meanmenu.min.js", "jquery.waypoints.min.js", "main.js", "modernizr-3.8.0.min.js", "multi-countdown.js", "owl.carousel.min.js", "popper.min.js", "splitting-animation.js", "splitting.min.js", "wow.js"]}], "files": ["about.html", "activity.html", "author-details.html", "authors.html", "blog-details.html", "blog.html", "contact.html", "explores.html", "faqs.html", "index.html", "item-details.html", "live.html", "privacy.html", "signin.html", "signup.html", "terms-conditions.html", "testimonials.html", "wallet.html"]};
+const CODEDIR="demo";
 const IMG=/\.(png|jpe?g|gif|svg|webp|ico|bmp)$/i;
 function show(id,btn){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById('p-'+id).classList.add('active');document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
 function buildTree(){
@@ -88,8 +89,8 @@ async function openFile(path,el){
   document.querySelectorAll('.tfile').forEach(e=>e.classList.remove('active'));el.classList.add('active');
   document.getElementById('cbar').textContent=path;
   const box=document.getElementById('codebox');
-  if(IMG.test(path)){box.innerHTML='<img class="preview" src="original/'+path+'">';return;}
-  try{const r=await fetch('original/'+path);const txt=await r.text();
+  if(IMG.test(path)){box.innerHTML='<img class="preview" src="'+CODEDIR+'/'+path+'">';return;}
+  try{const r=await fetch(CODEDIR+'/'+path);const txt=await r.text();
     box.innerHTML='<pre>'+hl(txt,path.split('.').pop())+'</pre>';
   }catch(e){box.innerHTML='<pre>Deshtoi leximi i file-it.</pre>';}
 }
